@@ -1,0 +1,10 @@
+.set-signup {
+  cursor: pointer;
+  color: blue;
+}
+.sign-container {
+  max-width: 300px;
+}
+.name-container {
+  display: flex;
+}
