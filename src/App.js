@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import memories from "../src/Images/alf.svg";
+import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
+import Form from "./Components/Form/Form";
+import Posts from "./Components/Posts/Posts";
+import useStyles from "./styles";
+import { useEffect, useState } from "react";
 
-function App() {
+import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
+import { getPosts, updatePost } from "./actions/posts";
+import { useDispatch } from "react-redux";
+import Navbar from "./Navbar/Navbar";
+import Home from "./Components/Home/Home";
+import Auth from "./Components/Auth/Auth";
+
+const App = () => {
+  const dispatch = useDispatch();
+  const classes = useStyles();
+
+  const [currentId, setCurrentId] = useState();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Container maxWidth="lg">
+          <Navbar />
+          <Routes>
+            <Route path="/" exact Component={Home}></Route>
+            <Route path="/auth" exact Component={Auth}></Route>
+          </Routes>
+          {/* <Home /> */}
+        </Container>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
