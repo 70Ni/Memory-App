@@ -9,6 +9,7 @@ const Form = ({ setCurrentId, currentId }) => {
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id == currentId) : null
   );
+
   console.log(post ? post.id : "nothing id");
   console.log(post);
   const [postData, setPostData] = useState({
@@ -47,7 +48,7 @@ const Form = ({ setCurrentId, currentId }) => {
     }
   }, [post]);
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h1>{currentId ? "Editing" : "Creating"} the form</h1>
       <input
         style={{ padding: 20, margin: 10 }}
@@ -72,7 +73,9 @@ const Form = ({ setCurrentId, currentId }) => {
         style={{ padding: 20, margin: 10 }}
         placeholder="tags"
         value={postData.tags}
-        onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(', ')})}
+        onChange={(e) =>
+          setPostData({ ...postData, tags: e.target.value.split(", ") })
+        }
       />
       <div>
         <FileBase64
