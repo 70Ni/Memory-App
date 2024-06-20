@@ -4,7 +4,7 @@ import "./styles.css";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {signup,signin} from '../../actions/auth'
+import { signup, signin } from "../../actions/auth";
 
 function Auth() {
   const initialState = {
@@ -67,7 +67,7 @@ function Auth() {
               data={data}
             />
             <Input
-              name="LastName"
+              name="lastName"
               placeholder="LastName"
               handleChange={handleChange}
               value={data.lastName}
